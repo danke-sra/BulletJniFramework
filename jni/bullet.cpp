@@ -91,7 +91,7 @@ Java_org_siprop_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
 	} else if(type == BT_SIMPLE_DYNAMICS_WORLD) {
 		btSimpleDynamicsWorld* pSimpleDynamicsWorld = (btSimpleDynamicsWorld*)pDynamicsWorld;
 	} else {
-		return NULL;
+		return 0;
 	}
 	
 	return id;
