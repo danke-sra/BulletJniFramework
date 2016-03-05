@@ -15,9 +15,9 @@ subject to the following restrictions:
 package org.gearvrf.bullet.util;
 
 public class DynamicsWorldType {
-	
-	public static int	BT_SIMPLE_DYNAMICS_WORLD=1;
-	public static int	BT_DISCRETE_DYNAMICS_WORLD=2;
-	public static int	BT_CONTINUOUS_DYNAMICS_WORLD=3;
-	
+	public static int	BT_SIMPLE_DYNAMICS_WORLD = 1;
+	public static int	BT_DISCRETE_DYNAMICS_WORLD = 2;
+	public static int	BT_CONTINUOUS_DYNAMICS_WORLD = 3;
+    public static int   BT_SOFT_RIGID_DYNAMICS_WORLD = 4;
+    public static int   BT_GPU_DYNAMICS_WORLD = 5;
 }

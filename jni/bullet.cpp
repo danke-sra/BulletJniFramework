@@ -71,7 +71,7 @@ Java_org_gearvrf_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
 	int id = get_int_by_JavaObj(env, physicsWorld_obj, "id");
 	LOGV("Load physicsWorld_obj ID.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)id);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(id);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load DynamicsWorld.");
 		return id;
@@ -85,9 +85,6 @@ Java_org_gearvrf_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
 		
 		pDiscreteDynamicsWorld->setGravity(get_vec_by_JavaObj(env, physicsWorld_obj, "gravity"));
 		LOGV("Load setGravity.");
-		
-	} else if(type == BT_CONTINUOUS_DYNAMICS_WORLD) {
-		btContinuousDynamicsWorld* pContinuousDynamicsWorld = (btContinuousDynamicsWorld*)pDynamicsWorld;
 	} else if(type == BT_SIMPLE_DYNAMICS_WORLD) {
 		btSimpleDynamicsWorld* pSimpleDynamicsWorld = (btSimpleDynamicsWorld*)pDynamicsWorld;
 	} else {
@@ -108,7 +105,7 @@ Java_org_gearvrf_bullet_Bullet_createGeometry(JNIEnv* env,
                                              jobject geometry_obj) {
 
 
-	btCollisionShape* groundShape;
+	btCollisionShape* groundShape = 0;
 	
 	btScalar mass = get_float_by_JavaObj(env, geometry_obj, "mass");
 	btVector3 localInertia = get_vec_by_JavaObj(env, geometry_obj, "localInertia");
@@ -206,7 +203,7 @@ Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
 	
 	LOGV("in createAndAddRigidBody.");
 	
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
@@ -226,7 +223,7 @@ Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
 	}
 	LOGV("Load shapeID.");
 	int shapeID = get_id_by_JavaObj(env, shape_obj);
-	btCollisionShape* colShape = g_CollisionShapes.get((btCollisionShape*)shapeID);
+	btCollisionShape* colShape = g_CollisionShapes.get(shapeID);
 	if(colShape == NULL) {
 		LOGV("shapeID is NULL.");
 		return 0;
@@ -310,13 +307,13 @@ Java_org_gearvrf_bullet_Bullet_applyForce(JNIEnv* env,
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyForce.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -341,13 +338,13 @@ Java_org_gearvrf_bullet_Bullet_applyTorque(JNIEnv* env,
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyTorque.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -372,13 +369,13 @@ Java_org_gearvrf_bullet_Bullet_applyCentralImpulse(JNIEnv* env,
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyCentralImpulse.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -401,13 +398,13 @@ Java_org_gearvrf_bullet_Bullet_applyTorqueImpulse(JNIEnv* env,
 	
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyTorqueImpulse.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -431,13 +428,13 @@ Java_org_gearvrf_bullet_Bullet_applyImpulse(JNIEnv* env,
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyImpulse.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -462,13 +459,13 @@ Java_org_gearvrf_bullet_Bullet_clearForces(JNIEnv* env,
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_clearForces.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -492,7 +489,7 @@ Java_org_gearvrf_bullet_Bullet_setActivePhysicsWorldAll(JNIEnv* env,
 	btCollisionObject* obj;
 	btRigidBody* body;
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
@@ -522,13 +519,13 @@ Java_org_gearvrf_bullet_Bullet_setActive(JNIEnv* env,
 	
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyImpulse.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
 	}
 
-	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rigidBodyId);
+	btCollisionObject* obj = pDynamicsWorld->getCollisionObjectArray().get(rigidBodyId);
 	if(obj == NULL) {
 		LOGV("Don't Load btRigidBody.");
 		return 0;
@@ -604,7 +601,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 				return 0;
 			}
 			
-			btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+			btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 			if(pDynamicsWorld == NULL) {
 				LOGV("Don't Load pDynamicsWorld.");
 				return 0;
@@ -612,7 +609,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 			
 			
 			
-			btCollisionObject* objA = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rbAID);
+			btCollisionObject* objA = pDynamicsWorld->getCollisionObjectArray().get(rbAID);
 			btRigidBody* bodyA = btRigidBody::upcast(objA);
 			btVector3 pivotInA = get_pivot_by_JavaObj(env, constraint_obj, "pivotInA");
 			btVector3 axisInA = get_axis_by_JavaObj(env, constraint_obj, "axisInA");
@@ -626,7 +623,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 			} else {
 				jobject rbB_obj = get_obj_by_JavaObj(env, constraint_obj, "rbB", "Lorg/gearvrf/bullet/RigidBody;");
 				jint rbBID = get_int_by_JavaObj(env, rbB_obj, "id");
-				btCollisionObject* objB = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rbBID);
+				btCollisionObject* objB = pDynamicsWorld->getCollisionObjectArray().get(rbBID);
 				btRigidBody* bodyB = btRigidBody::upcast(objB);
 				btVector3 pivotInB = get_pivot_by_JavaObj(env, constraint_obj, "pivotInB");
 				btVector3 axisInB = get_axis_by_JavaObj(env, constraint_obj, "axisInB");
@@ -661,7 +658,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 				return 0;
 			}
 			
-			btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+			btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 			if(pDynamicsWorld == NULL) {
 				LOGV("Don't Load pDynamicsWorld.");
 				return 0;
@@ -669,7 +666,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 			
 			
 			
-			btCollisionObject* objA = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rbAID);
+			btCollisionObject* objA = pDynamicsWorld->getCollisionObjectArray().get(rbAID);
 			btRigidBody* bodyA = btRigidBody::upcast(objA);
 			btVector3 pivotInA = get_pivot_by_JavaObj(env, constraint_obj, "pivotInA");
 			
@@ -681,7 +678,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 			} else {
 				jobject rbB_obj = get_obj_by_JavaObj(env, constraint_obj, "rbB", "Lorg/gearvrf/bullet/RigidBody;");
 				jint rbBID = get_int_by_JavaObj(env, rbB_obj, "id");
-				btCollisionObject* objB = pDynamicsWorld->getCollisionObjectArray().get((btRigidBody*)rbBID);
+				btCollisionObject* objB = pDynamicsWorld->getCollisionObjectArray().get(rbBID);
 				btRigidBody* bodyB = btRigidBody::upcast(objB);
 				btVector3 pivotInB = get_pivot_by_JavaObj(env, constraint_obj, "pivotInB");
 				p2p = new btPoint2PointConstraint(*bodyA,
@@ -744,7 +741,7 @@ Java_org_gearvrf_bullet_Bullet_doSimulationNative(JNIEnv* env,
 
 	LOGV("in doSimulationNative.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return 0;
@@ -883,9 +880,8 @@ void destroyPhysicsWorld(btDynamicsWorld* pDynamicsWorld) {
 		pDynamicsWorld->removeCollisionObject( obj );
 		SAFE_DELETE( obj );
 	}
-
-	btCollisionConfiguration* cc = pDynamicsWorld->getCollisionConfiguration();
-	SAFE_DELETE(cc);
+	// btCollisionConfiguration* cc = pDynamicsWorld->getCollisionConfiguration();
+	//SAFE_DELETE(cc);
 	btBroadphaseInterface* bp = pDynamicsWorld->getBroadphase();
 	SAFE_DELETE(bp);
 	btOverlappingPairCache* pc = pDynamicsWorld->getPairCache();
@@ -914,7 +910,7 @@ Java_org_gearvrf_bullet_Bullet_destroyPhysicsWorld(JNIEnv* env,
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_destroyPhysicsWorld.");
 
-	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get((btDynamicsWorld*)physicsWorldId);	
+	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(physicsWorldId);
 	if(pDynamicsWorld == NULL) {
 		LOGV("Don't Load pDynamicsWorld.");
 		return JNI_TRUE;

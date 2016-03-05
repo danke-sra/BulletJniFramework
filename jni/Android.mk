@@ -22,97 +22,43 @@ LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/BulletCollision/BroadphaseCollision \
         $(LOCAL_PATH)/BulletCollision/CollisionDispatch \
         $(LOCAL_PATH)/BulletCollision/CollisionShapes \
+        $(LOCAL_PATH)/BulletCollision/Gimpact \
         $(LOCAL_PATH)/BulletCollision/NarrowPhaseCollision \
+        $(LOCAL_PATH)/BulletDynamics/Character \
         $(LOCAL_PATH)/BulletDynamics/ConstraintSolver \
         $(LOCAL_PATH)/BulletDynamics/Dynamics \
+        $(LOCAL_PATH)/BulletDynamics/Featurestone \
+        $(LOCAL_PATH)/BulletDynamics/MLCPSolvers \
         $(LOCAL_PATH)/BulletDynamics/Vehicle \
-        $(LOCAL_PATH)/LinearMath
+        $(LOCAL_PATH)/BulletSoftBody \
+        $(LOCAL_PATH)/LinearMath \
+        $(LOCAL_PATH)/Bullet3Common \
+        $(LOCAL_PATH)/Bullet3Dynamics \
+        $(LOCAL_PATH)/Bullet3Dynamics/ConstraintSolver \
+        $(LOCAL_PATH)/Bullet3Geometry \
 
 LOCAL_CFLAGS := $(LOCAL_C_INCLUDES:%=-I%)
 LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -ldl -lm -llog
 
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletCollision/BroadphaseCollision/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletCollision/CollisionDispatch/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletCollision/CollisionShapes/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletCollision/Gimpact/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletCollision/NarrowPhaseCollision/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/Character/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/ConstraintSolver/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/Dynamics/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/Featurestone/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/MLCPSolvers/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/Vehicle/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletSoftBody/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/LinearMath/*.cpp)
+#FILE_LIST += $(wildcard $(LOCAL_PATH)/Bullet3Common/*.cpp)
+#FILE_LIST += $(wildcard $(LOCAL_PATH)/Bullet3Geometry/*.cpp)
 
-LOCAL_SRC_FILES := \
-        BulletCollision/BroadphaseCollision/btAxisSweep3.cpp \
-        BulletCollision/BroadphaseCollision/btBroadphaseProxy.cpp \
-        BulletCollision/BroadphaseCollision/btCollisionAlgorithm.cpp \
-        BulletCollision/BroadphaseCollision/btDispatcher.cpp \
-        BulletCollision/BroadphaseCollision/btMultiSapBroadphase.cpp \
-        BulletCollision/BroadphaseCollision/btOverlappingPairCache.cpp \
-        BulletCollision/BroadphaseCollision/btSimpleBroadphase.cpp \
-        BulletCollision/CollisionDispatch/btCollisionDispatcher.cpp \
-        BulletCollision/CollisionDispatch/btCollisionObject.cpp \
-        BulletCollision/CollisionDispatch/btCollisionWorld.cpp \
-        BulletCollision/CollisionDispatch/btCompoundCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btConvexConcaveCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btConvexPlaneCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.cpp \
-        BulletCollision/CollisionDispatch/btEmptyCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btManifoldResult.cpp \
-        BulletCollision/CollisionDispatch/btSimulationIslandManager.cpp \
-        BulletCollision/CollisionDispatch/btSphereBoxCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btSphereTriangleCollisionAlgorithm.cpp \
-        BulletCollision/CollisionDispatch/btUnionFind.cpp \
-        BulletCollision/CollisionDispatch/SphereTriangleDetector.cpp \
-        BulletCollision/CollisionShapes/btBoxShape.cpp \
-        BulletCollision/CollisionShapes/btBvhTriangleMeshShape.cpp \
-        BulletCollision/CollisionShapes/btCapsuleShape.cpp \
-        BulletCollision/CollisionShapes/btCollisionShape.cpp \
-        BulletCollision/CollisionShapes/btCompoundShape.cpp \
-        BulletCollision/CollisionShapes/btConcaveShape.cpp \
-        BulletCollision/CollisionShapes/btConeShape.cpp \
-        BulletCollision/CollisionShapes/btConvexHullShape.cpp \
-        BulletCollision/CollisionShapes/btConvexInternalShape.cpp \
-        BulletCollision/CollisionShapes/btConvexShape.cpp \
-        BulletCollision/CollisionShapes/btConvexTriangleMeshShape.cpp \
-        BulletCollision/CollisionShapes/btCylinderShape.cpp \
-        BulletCollision/CollisionShapes/btEmptyShape.cpp \
-        BulletCollision/CollisionShapes/btHeightfieldTerrainShape.cpp \
-        BulletCollision/CollisionShapes/btMinkowskiSumShape.cpp \
-        BulletCollision/CollisionShapes/btMultiSphereShape.cpp \
-        BulletCollision/CollisionShapes/btOptimizedBvh.cpp \
-        BulletCollision/CollisionShapes/btPolyhedralConvexShape.cpp \
-        BulletCollision/CollisionShapes/btSphereShape.cpp \
-        BulletCollision/CollisionShapes/btStaticPlaneShape.cpp \
-        BulletCollision/CollisionShapes/btStridingMeshInterface.cpp \
-        BulletCollision/CollisionShapes/btTetrahedronShape.cpp \
-        BulletCollision/CollisionShapes/btTriangleBuffer.cpp \
-        BulletCollision/CollisionShapes/btTriangleCallback.cpp \
-        BulletCollision/CollisionShapes/btTriangleIndexVertexArray.cpp \
-        BulletCollision/CollisionShapes/btTriangleMesh.cpp \
-        BulletCollision/CollisionShapes/btTriangleMeshShape.cpp \
-        BulletCollision/CollisionShapes/btUniformScalingShape.cpp \
-        BulletCollision/NarrowPhaseCollision/btContinuousConvexCollision.cpp \
-        BulletCollision/NarrowPhaseCollision/btConvexCast.cpp \
-        BulletCollision/NarrowPhaseCollision/btGjkConvexCast.cpp \
-        BulletCollision/NarrowPhaseCollision/btGjkEpa.cpp \
-        BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.cpp \
-        BulletCollision/NarrowPhaseCollision/btGjkPairDetector.cpp \
-        BulletCollision/NarrowPhaseCollision/btMinkowskiPenetrationDepthSolver.cpp \
-        BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp \
-        BulletCollision/NarrowPhaseCollision/btRaycastCallback.cpp \
-        BulletCollision/NarrowPhaseCollision/btSubSimplexConvexCast.cpp \
-        BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.cpp \
-        BulletDynamics/ConstraintSolver/btConeTwistConstraint.cpp \
-        BulletDynamics/ConstraintSolver/btContactConstraint.cpp \
-        BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.cpp \
-        BulletDynamics/ConstraintSolver/btHingeConstraint.cpp \
-        BulletDynamics/ConstraintSolver/btPoint2PointConstraint.cpp \
-        BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.cpp \
-        BulletDynamics/ConstraintSolver/btSolve2LinearConstraint.cpp \
-        BulletDynamics/ConstraintSolver/btTypedConstraint.cpp \
-        BulletDynamics/Dynamics/btContinuousDynamicsWorld.cpp \
-        BulletDynamics/Dynamics/btDiscreteDynamicsWorld.cpp \
-        BulletDynamics/Dynamics/btRigidBody.cpp \
-        BulletDynamics/Dynamics/btSimpleDynamicsWorld.cpp \
-        BulletDynamics/Dynamics/Bullet-C-API.cpp \
-        BulletDynamics/Vehicle/btRaycastVehicle.cpp \
-        BulletDynamics/Vehicle/btWheelInfo.cpp \
-        LinearMath/btAlignedAllocator.cpp \
-        LinearMath/btGeometryUtil.cpp \
-        LinearMath/btQuickprof.cpp \
-        bullet.cpp
+LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)
+LOCAL_SRC_FILES += bullet.cpp
+
+$(info $(LOCAL_SRC_FILES))
 
 include $(BUILD_SHARED_LIBRARY)

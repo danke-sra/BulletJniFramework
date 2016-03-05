@@ -356,7 +356,7 @@ btVector3 get_vec_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_na
 
 }
 
-btPoint3 get_point_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_name) {
+btVector3 get_point_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_name) {
 
 	LOGV("in get_point_by_JavaObj!");
 	
@@ -372,7 +372,7 @@ btPoint3 get_point_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_n
 	jfieldID point_z_fid = env->GetFieldID(point_clazz, "z", "F");
 	jfloat point_z_obj = env->GetFloatField(point_obj, point_z_fid);
 
-	return btPoint3(point_x_obj, point_y_obj, point_z_obj);
+	return btVector3(point_x_obj, point_y_obj, point_z_obj);
 
 }
 
