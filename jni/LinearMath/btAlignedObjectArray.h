@@ -77,10 +77,9 @@ protected:
 		{
 			return (size ? size*2 : 1);
 		}
-		SIMD_FORCE_INLINE	void	copy(int start,int end, T* dest) const
+		SIMD_FORCE_INLINE	void	copy(int start, int end, T* dest) const
 		{
-			int i;
-			for (i=start;i<end;++i)
+			for (int i = start; i < end; ++i)
 #ifdef BT_USE_PLACEMENT_NEW
 				new (&dest[i]) T(m_data[i]);
 #else
@@ -98,11 +97,13 @@ protected:
 		}
 		SIMD_FORCE_INLINE	void	destroy(int first,int last)
 		{
-			int i;
-			for (i=first; i<last;i++)
-			{
-				m_data[i].~T();
-			}
+		    int i;
+		    if (m_data) {
+		        for (i=first; i<last;i++)
+		        {
+		            m_data[i].~T();
+		        }
+		    }
 		}
 
 		SIMD_FORCE_INLINE	void* allocate(int size)
@@ -114,7 +115,7 @@ protected:
 
 		SIMD_FORCE_INLINE	void	deallocate()
 		{
-			if(m_data)	{
+			if (m_data)	{
 				//PCK: enclosed the deallocation in this block
 				if (m_ownsMemory)
 				{

@@ -53,12 +53,8 @@ FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/MLCPSolvers/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletDynamics/Vehicle/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/BulletSoftBody/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/LinearMath/*.cpp)
-#FILE_LIST += $(wildcard $(LOCAL_PATH)/Bullet3Common/*.cpp)
-#FILE_LIST += $(wildcard $(LOCAL_PATH)/Bullet3Geometry/*.cpp)
 
 LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)
 LOCAL_SRC_FILES += bullet.cpp
-
-$(info $(LOCAL_SRC_FILES))
 
 include $(BUILD_SHARED_LIBRARY)
