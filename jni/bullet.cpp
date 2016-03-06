@@ -16,7 +16,7 @@ subject to the following restrictions:
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_createNonConfigPhysicsWorld(JNIEnv* env,
                                                        jobject thiz,
@@ -53,8 +53,8 @@ Java_org_gearvrf_bullet_Bullet_createNonConfigPhysicsWorld(JNIEnv* env,
 	g_DynamicsWorlds.push_back(pDynamicsWorld);
 
 
-	jint addr_val = (int)pDynamicsWorld;
-	set_JavaObj_int(env, physicsWorld_obj, "id", addr_val);
+	jlong addr_val = (jlong)pDynamicsWorld;
+	set_JavaObj_long(env, physicsWorld_obj, "id", addr_val);
 
 	return addr_val;
 
@@ -62,13 +62,13 @@ Java_org_gearvrf_bullet_Bullet_createNonConfigPhysicsWorld(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
                                                        jobject thiz,
                                                        jobject physicsWorld_obj) {
 
-	int id = get_int_by_JavaObj(env, physicsWorld_obj, "id");
+	uint64_t id = get_long_by_JavaObj(env, physicsWorld_obj, "id");
 	LOGV("Load physicsWorld_obj ID.");
 
 	btDynamicsWorld* pDynamicsWorld = g_DynamicsWorlds.get(id);
@@ -98,7 +98,7 @@ Java_org_gearvrf_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_createGeometry(JNIEnv* env,
                                              jobject thiz,
@@ -185,8 +185,8 @@ Java_org_gearvrf_bullet_Bullet_createGeometry(JNIEnv* env,
 	
 	g_CollisionShapes.push_back(groundShape);
 	
-	jint addr_val = (int)groundShape;
-	set_JavaObj_int(env, geometry_obj, "id", addr_val);
+	jlong addr_val = (jlong)groundShape;
+	set_JavaObj_long(env, geometry_obj, "id", addr_val);
 
 	return addr_val;
 	
@@ -194,11 +194,11 @@ Java_org_gearvrf_bullet_Bullet_createGeometry(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
                                                     jobject thiz,
-                                                    jint physicsWorldId,
+                                                    jlong physicsWorldId,
                                                     jobject rigidBody_obj) {
 	
 	LOGV("in createAndAddRigidBody.");
@@ -285,8 +285,8 @@ Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
 
 	pDynamicsWorld->addRigidBody(body);
 	
-	jint addr_val = (int)body;
-	set_JavaObj_int(env, rigidBody_obj, "id", addr_val);
+	jlong addr_val = (jlong)body;
+	set_JavaObj_long(env, rigidBody_obj, "id", addr_val);
 
 	return addr_val;
 	
@@ -296,12 +296,12 @@ Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyForce(JNIEnv* env,
                                          jobject thiz,
-                                         jint physicsWorldId, 
-                                         jint rigidBodyId, 
+                                         jlong physicsWorldId,
+                                         jlong rigidBodyId,
                                          jobject force,
                                          jobject applyPoint) {
 
@@ -323,17 +323,16 @@ Java_org_gearvrf_bullet_Bullet_applyForce(JNIEnv* env,
 					 get_vec_by_JavaVecObj(env, applyPoint));
 
 	return 1;
-
 }
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyTorque(JNIEnv* env,
                                           jobject thiz,
-                                          jint physicsWorldId, 
-                                          jint rigidBodyId, 
+                                          jlong physicsWorldId,
+                                          jlong rigidBodyId,
                                           jobject torque) {
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyTorque.");
@@ -359,12 +358,12 @@ Java_org_gearvrf_bullet_Bullet_applyTorque(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyCentralImpulse(JNIEnv* env,
                                                   jobject thiz,
-                                                  jint physicsWorldId, 
-                                                  jint rigidBodyId, 
+                                                  jlong physicsWorldId,
+                                                  jlong rigidBodyId,
                                                   jobject impulse) {
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyCentralImpulse.");
@@ -388,12 +387,12 @@ Java_org_gearvrf_bullet_Bullet_applyCentralImpulse(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyTorqueImpulse(JNIEnv* env,
                                                  jobject thiz,
-                                                 jint physicsWorldId, 
-                                                 jint rigidBodyId, 
+                                                 jlong physicsWorldId,
+                                                 jlong rigidBodyId,
                                                  jobject torque) {
 	
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyTorqueImpulse.");
@@ -417,12 +416,12 @@ Java_org_gearvrf_bullet_Bullet_applyTorqueImpulse(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyImpulse(JNIEnv* env,
                                            jobject thiz,
-                                           jint physicsWorldId, 
-                                           jint rigidBodyId, 
+                                           jlong physicsWorldId,
+                                           jlong rigidBodyId,
                                            jobject impulse, 
                                            jobject applyPoint) {
 
@@ -450,12 +449,12 @@ Java_org_gearvrf_bullet_Bullet_applyImpulse(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_clearForces(JNIEnv* env,
                                           jobject thiz,
-                                          jint physicsWorldId, 
-                                          jint rigidBodyId) {
+                                          jlong physicsWorldId,
+                                          jlong rigidBodyId) {
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_clearForces.");
 
@@ -479,11 +478,11 @@ Java_org_gearvrf_bullet_Bullet_clearForces(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_setActivePhysicsWorldAll(JNIEnv* env,
                                                        jobject thiz,
-                                                       jint physicsWorldId, 
+                                                       jlong physicsWorldId,
                                                        jboolean isActive) {
 
 	btCollisionObject* obj;
@@ -509,12 +508,12 @@ Java_org_gearvrf_bullet_Bullet_setActivePhysicsWorldAll(JNIEnv* env,
 }
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_setActive(JNIEnv* env,
                                         jobject thiz,
-                                        jint physicsWorldId, 
-                                        jint rigidBodyId, 
+                                        jlong physicsWorldId,
+                                        jlong rigidBodyId,
                                         jboolean isActive) {
 	
 	LOGV("in Java_org_gearvrf_bullet_Bullet_applyImpulse.");
@@ -539,7 +538,7 @@ Java_org_gearvrf_bullet_Bullet_setActive(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_setActiveAll(JNIEnv* env,
                                           jobject thiz,
@@ -571,7 +570,7 @@ Java_org_gearvrf_bullet_Bullet_setActiveAll(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
                                             jobject thiz,
@@ -587,15 +586,15 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 			LOGV("in HINGE_CONSTRAINT_TYPE.");
 			
 			jobject rbA_obj;
-			jint rbAID;
+			jlong rbAID;
 			
 			if(is_NULL_field_JavaObj(env, constraint_obj, "rbA", "Lorg/gearvrf/bullet/RigidBody;")) {
 				LOGV("Don't Load rbA.");
 				return 0;
 			}
 			rbA_obj = get_obj_by_JavaObj(env, constraint_obj, "rbA", "Lorg/gearvrf/bullet/RigidBody;");
-			rbAID = get_int_by_JavaObj(env, rbA_obj, "id");
-			int physicsWorldId = get_int_by_JavaObj(env, rbA_obj, "physicsWorldId");
+			rbAID = get_long_by_JavaObj(env, rbA_obj, "id");
+			jlong physicsWorldId = get_long_by_JavaObj(env, rbA_obj, "physicsWorldId");
 			if(physicsWorldId == 0) {
 				LOGV("Don't Load physicsWorldId.");
 				return 0;
@@ -622,7 +621,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 											  axisInA);
 			} else {
 				jobject rbB_obj = get_obj_by_JavaObj(env, constraint_obj, "rbB", "Lorg/gearvrf/bullet/RigidBody;");
-				jint rbBID = get_int_by_JavaObj(env, rbB_obj, "id");
+				jlong rbBID = get_long_by_JavaObj(env, rbB_obj, "id");
 				btCollisionObject* objB = pDynamicsWorld->getCollisionObjectArray().get(rbBID);
 				btRigidBody* bodyB = btRigidBody::upcast(objB);
 				btVector3 pivotInB = get_pivot_by_JavaObj(env, constraint_obj, "pivotInB");
@@ -644,15 +643,15 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 		case POINT2POINT_CONSTRAINT_TYPE: {
 			LOGV("in POINT2POINT_CONSTRAINT_TYPE.");
 			jobject rbA_obj;
-			jint rbAID;
+			jlong rbAID;
 			
 			if(is_NULL_field_JavaObj(env, constraint_obj, "rbA", "Lorg/gearvrf/bullet/RigidBody;")) {
 				LOGV("Don't Load rbA.");
 				return 0;
 			}
 			rbA_obj = get_obj_by_JavaObj(env, constraint_obj, "rbA", "Lorg/gearvrf/bullet/RigidBody;");
-			rbAID = get_int_by_JavaObj(env, rbA_obj, "id");
-			int physicsWorldId = get_int_by_JavaObj(env, rbA_obj, "physicsWorldId");
+			rbAID = get_long_by_JavaObj(env, rbA_obj, "id");
+			jlong physicsWorldId = get_long_by_JavaObj(env, rbA_obj, "physicsWorldId");
 			if(physicsWorldId == 0) {
 				LOGV("Don't Load physicsWorldId.");
 				return 0;
@@ -677,7 +676,7 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 											  pivotInA);
 			} else {
 				jobject rbB_obj = get_obj_by_JavaObj(env, constraint_obj, "rbB", "Lorg/gearvrf/bullet/RigidBody;");
-				jint rbBID = get_int_by_JavaObj(env, rbB_obj, "id");
+				jlong rbBID = get_long_by_JavaObj(env, rbB_obj, "id");
 				btCollisionObject* objB = pDynamicsWorld->getCollisionObjectArray().get(rbBID);
 				btRigidBody* bodyB = btRigidBody::upcast(objB);
 				btVector3 pivotInB = get_pivot_by_JavaObj(env, constraint_obj, "pivotInB");
@@ -707,11 +706,11 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_doSimulationNative(JNIEnv* env,
                                                  jobject thiz,
-                                                 jint physicsWorldId,
+                                                 jlong physicsWorldId,
                                                  jfloat exec_time,
                                                  jint count) {
 
@@ -859,7 +858,7 @@ Java_org_gearvrf_bullet_Bullet_doSimulationNative(JNIEnv* env,
 	}
 	LOGV("out doSimulationNative.");
 
-    return (jint)coll_obj;
+    return (jlong)coll_obj;
 
 }
 
@@ -906,7 +905,7 @@ jboolean
 JNICALL
 Java_org_gearvrf_bullet_Bullet_destroyPhysicsWorld(JNIEnv* env,
                                                   jobject thiz,
-                                                  jint physicsWorldId) {
+                                                  jlong physicsWorldId) {
 
 	LOGV("in Java_org_gearvrf_bullet_Bullet_destroyPhysicsWorld.");
 

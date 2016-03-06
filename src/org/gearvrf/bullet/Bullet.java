@@ -30,9 +30,9 @@ import android.util.Log;
 public class Bullet {
 
 	
-	private Map<Integer, PhysicsWorld> physicsWorlds = new HashMap<Integer, PhysicsWorld>();
-	private Map<Integer, Geometry> geometries = new HashMap<Integer, Geometry>();
-	private Map<Integer, RigidBody> rigidBodies = new HashMap<Integer, RigidBody>();
+	private Map<Long, PhysicsWorld> physicsWorlds = new HashMap<Long, PhysicsWorld>();
+	private Map<Long, Geometry> geometries = new HashMap<Long, Geometry>();
+	private Map<Long, RigidBody> rigidBodies = new HashMap<Long, RigidBody>();
 	
 	// PhysicsWorld
 	private PhysicsWorld defaultPhysicsWorld;
@@ -44,10 +44,10 @@ public class Bullet {
 		return defaultPhysicsWorld;
 	}
 	
-	public Map<Integer, PhysicsWorld> getPhysicsWorlds() {
+	public Map<Long, PhysicsWorld> getPhysicsWorlds() {
 		return physicsWorlds;
 	}
-	public PhysicsWorld getPhysicsWorld(int id) {
+	public PhysicsWorld getPhysicsWorld(long id) {
 		return physicsWorlds.get(id);
 	}
 	public PhysicsWorld createPhysicsWorld(Vector3 worldAabbMin,
@@ -94,18 +94,18 @@ public class Bullet {
 		return phyWorld;
 	}
 	
-	public native int createNonConfigPhysicsWorld(PhysicsWorld physicsWorld);
-	public native int createPhysicsWorld(PhysicsWorld physicsWorld);
+	public native long createNonConfigPhysicsWorld(PhysicsWorld physicsWorld);
+	public native long createPhysicsWorld(PhysicsWorld physicsWorld);
 	
-	public native int changePhysicsWorldConfiguration(PhysicsWorld physicsWorld);
+	public native long changePhysicsWorldConfiguration(PhysicsWorld physicsWorld);
 	
 	
 
 	// Geometry
-	public Map<Integer, Geometry> getGeometries() {
+	public Map<Long, Geometry> getGeometries() {
 		return geometries;
 	}
-	public Geometry getGeometry(int id) {
+	public Geometry getGeometry(long id) {
 		return geometries.get(id);
 	}
 	public Geometry createGeometry(Shape collisionShape,
@@ -123,7 +123,7 @@ public class Bullet {
 		return geometry;
 	}
 	
-	public native int createGeometry(Geometry geometry);
+	public native long createGeometry(Geometry geometry);
 
 	
 	
@@ -152,7 +152,7 @@ public class Bullet {
 		rigidBodies.put(rigidBody.id , rigidBody);
 		return rigidBody;
 	}
-	public native int createAndAddRigidBody(int physicsWorldId, RigidBody rigidBody);
+	public native long createAndAddRigidBody(long physicsWorldId, RigidBody rigidBody);
 	
 	
 	public void removeRigidBody(RigidBody body) {
@@ -162,7 +162,7 @@ public class Bullet {
 			rigidBodies.remove(body.id);
 		}
 	}
-	public native void removeRigidBody(int worldID, RigidBody body);	
+	public native void removeRigidBody(long worldID, RigidBody body);	
 
 
 	
@@ -172,7 +172,7 @@ public class Bullet {
 			applyForce(body.physicsWorldId, body.id, force, applyPoint);
 		}
 	}
-	public native int applyForce(int physicsWorldId, int rigidBodyId, Vector3 force, Vector3 applyPoint);
+	public native long applyForce(long physicsWorldId, long rigidBodyId, Vector3 force, Vector3 applyPoint);
 
 	
 	public void applyTorque(RigidBody body, Vector3 torque) {
@@ -180,7 +180,7 @@ public class Bullet {
 			applyTorque(body.physicsWorldId, body.id, torque);
 		}
 	}
-	public native int applyTorque(int physicsWorldId, int rigidBodyId, Vector3 torque);
+	public native long applyTorque(long physicsWorldId, long rigidBodyId, Vector3 torque);
 	
 	
 	public void applyCentralImpulse(RigidBody body, Vector3 impulse) {
@@ -188,7 +188,7 @@ public class Bullet {
 			applyCentralImpulse(body.physicsWorldId, body.id, impulse);
 		}
 	}
-	public native int applyCentralImpulse(int physicsWorldId, int rigidBodyId, Vector3 impulse);
+	public native long applyCentralImpulse(long physicsWorldId, long rigidBodyId, Vector3 impulse);
 
 	
   	public void applyTorqueImpulse(RigidBody body, Vector3 torque) {
@@ -196,7 +196,7 @@ public class Bullet {
 			applyTorqueImpulse(body.physicsWorldId, body.id, torque);
 		}
 	}
-	public native int applyTorqueImpulse(int physicsWorldId, int rigidBodyId, Vector3 torque);
+	public native long applyTorqueImpulse(long physicsWorldId, long rigidBodyId, Vector3 torque);
 
 	
 	public void applyImpulse(RigidBody body, Vector3 impulse, Vector3 applyPoint)  {
@@ -204,7 +204,7 @@ public class Bullet {
 			applyImpulse(body.physicsWorldId, body.id, impulse, applyPoint);
 		}
 	}
-	public native int applyImpulse(int physicsWorldId, int rigidBodyId, Vector3 impulse, Vector3 applyPoint);
+	public native long applyImpulse(long physicsWorldId, long rigidBodyId, Vector3 impulse, Vector3 applyPoint);
 
 	
 	public void clearForces(RigidBody body) {
@@ -212,7 +212,7 @@ public class Bullet {
 			clearForces(body.physicsWorldId, body.id);
 		}
 	}
-	public native int clearForces(int physicsWorldId, int rigidBodyId);
+	public native long clearForces(long physicsWorldId, long rigidBodyId);
 	
 
 	public void setActive(PhysicsWorld physicsWorld, boolean isActive) {
@@ -221,35 +221,35 @@ public class Bullet {
 	public void setActive(RigidBody body, boolean isActive) {
 		setActive(body.physicsWorldId, body.id, isActive);
 	}
-	public native int setActive(int physicsWorldId, int rigidBodyId, boolean isActive);
-	public native int setActivePhysicsWorldAll(int physicsWorldId, boolean isActive);
-	public native int setActiveAll(boolean isActive);
+	public native long setActive(long physicsWorldId, long rigidBodyId, boolean isActive);
+	public native long setActivePhysicsWorldAll(long physicsWorldId, boolean isActive);
+	public native long setActiveAll(boolean isActive);
 
 	
 	// addConstraint
-	public native int addConstraint(Constraint constraint);
+	public native long addConstraint(Constraint constraint);
 		
 	
-	public Map<Integer, RigidBody> doSimulation(float execTime, int count) {
+	public Map<Long, RigidBody> doSimulation(float execTime, int count) {
 		return doSimulation(defaultPhysicsWorld, execTime, count);
 	}
-	public Map<Integer, RigidBody> doSimulation(PhysicsWorld physicsWorld, float execTime, int count) {
+	public Map<Long, RigidBody> doSimulation(PhysicsWorld physicsWorld, float execTime, int count) {
 		doSimulationNative(physicsWorld.id, execTime, count);
 		return rigidBodies;
 	}
-	public Map<Integer, RigidBody> doSimulationWithCallback(ResultSimulationCallback resultCallback, float execTime, int count) {
+	public Map<Long, RigidBody> doSimulationWithCallback(ResultSimulationCallback resultCallback, float execTime, int count) {
 		return doSimulationWithCallback(resultCallback, defaultPhysicsWorld, execTime, count);
 	}
-	public Map<Integer, RigidBody> doSimulationWithCallback(ResultSimulationCallback resultCallback, PhysicsWorld physicsWorld, float execTime, int count) {
+	public Map<Long, RigidBody> doSimulationWithCallback(ResultSimulationCallback resultCallback, PhysicsWorld physicsWorld, float execTime, int count) {
 		doSimulationNative(physicsWorld.id, execTime, count);
 		if(resultCallback != null) {
 			resultCallback.resultSimulation(rigidBodies);
 		}
 		return rigidBodies;
 	}
-	private native int doSimulationNative(int worldId, float execTime, int count); 
+	private native long doSimulationNative(long worldId, float execTime, int count); 
 
-	private void resultSimulation(int rigidBodyID, int shapeType, float[] rot, float[] pos, float[] shapeOption) {
+	private void resultSimulation(long rigidBodyID, int shapeType, float[] rot, float[] pos, float[] shapeOption) {
 		RigidBody body = rigidBodies.get(rigidBodyID);
 		if(body == null) {
 			Log.d("resultSimulation", "body is null.");

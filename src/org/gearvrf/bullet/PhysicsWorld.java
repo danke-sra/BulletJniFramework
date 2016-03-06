@@ -20,7 +20,7 @@ import org.gearvrf.bullet.util.Vector3;
 
 public class PhysicsWorld {
 
-	public int id = 0;
+	public long id = 0;
 	
 	public CollisionConfiguration cllisionConfiguration;
 	public CollisionDispatcher collisionDispatcher;

@@ -20,7 +20,7 @@ import org.gearvrf.bullet.util.ShapeType;
 public class SphereShape implements Shape {
 	
 	private static final int type = ShapeType.SPHERE_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 	
 	public final float radius;
 	
@@ -34,12 +34,12 @@ public class SphereShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 

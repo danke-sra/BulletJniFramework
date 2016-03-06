@@ -21,7 +21,7 @@ import org.gearvrf.bullet.util.ShapeType;
 public class TriangleShape implements Shape {
 	
 	private static final int type = ShapeType.TRIANGLE_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 	
 	public final Point3 p0;
 	public final Point3 p1;
@@ -40,12 +40,12 @@ public class TriangleShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 

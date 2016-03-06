@@ -17,6 +17,7 @@ subject to the following restrictions:
 #ifndef BT_OBJECT_ARRAY__
 #define BT_OBJECT_ARRAY__
 
+#include <stdint.h>
 #include "btScalar.h" // has definitions like SIMD_FORCE_INLINE
 #include "btAlignedAllocator.h"
 
@@ -158,7 +159,7 @@ protected:
 			return m_size;
 		}
 		
-		SIMD_FORCE_INLINE T get(int elemPtr) const
+		SIMD_FORCE_INLINE T get(uint64_t elemPtr) const
 		{
 		    for (int i = 0; i < size(); ++i) {
 		        if (m_data[i] == (T)elemPtr)

@@ -20,6 +20,6 @@ import org.gearvrf.bullet.RigidBody;
 
 public interface ResultSimulationCallback {
 
-	public void resultSimulation(Map<Integer, RigidBody> rigidBodies);
+	public void resultSimulation(Map<Long, RigidBody> rigidBodies);
 	
 }

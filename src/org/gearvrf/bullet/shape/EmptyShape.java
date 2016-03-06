@@ -20,7 +20,7 @@ import org.gearvrf.bullet.util.ShapeType;
 public class EmptyShape implements Shape {
 	
 	private static final int type = ShapeType.EMPTY_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 
 	public EmptyShape() {
 		
@@ -32,12 +32,12 @@ public class EmptyShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 }

@@ -20,7 +20,7 @@ import org.gearvrf.bullet.util.ShapeType;
 public class ConvexTriangleMeshShape implements Shape {
 	
 	private static final int type = ShapeType.CONVEX_TRIANGLEMESH_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 
 	@Override
 	public int getType() {
@@ -28,12 +28,12 @@ public class ConvexTriangleMeshShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 }

@@ -16,8 +16,8 @@ package org.gearvrf.bullet;
 
 public class RigidBody {
 	
-	public int id = 0;
-	public int physicsWorldId = 0;
+	public long id = 0;
+	public long physicsWorldId = 0;
 	
 	public MotionState motionState;
 	

@@ -21,7 +21,7 @@ import org.gearvrf.bullet.util.Vector3;
 public class BoxShape implements Shape {
 	
 	private static final int type = ShapeType.BOX_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 	
 	public final Vector3 boxHalfExtents;
 	
@@ -35,12 +35,12 @@ public class BoxShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 }

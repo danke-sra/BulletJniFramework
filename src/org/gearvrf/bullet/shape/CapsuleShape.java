@@ -20,7 +20,7 @@ import org.gearvrf.bullet.util.ShapeType;
 public class CapsuleShape implements Shape {
 	
 	private static final int type = ShapeType.CAPSULE_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 
 	public final float radius;
 	public final float height;
@@ -36,12 +36,12 @@ public class CapsuleShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 }

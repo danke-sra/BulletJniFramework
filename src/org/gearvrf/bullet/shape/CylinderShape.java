@@ -21,7 +21,7 @@ import org.gearvrf.bullet.util.Vector3;
 public class CylinderShape implements Shape {
 	
 	private static final int type = ShapeType.CYLINDER_SHAPE_PROXYTYPE;
-	private int id;
+	private long id;
 
 	public final Vector3 halfExtents;
 	
@@ -35,12 +35,12 @@ public class CylinderShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 }

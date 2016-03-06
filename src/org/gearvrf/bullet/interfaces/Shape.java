@@ -16,8 +16,8 @@ package org.gearvrf.bullet.interfaces;
 
 public interface Shape {
 
-	public void setID(int id);
-	public int getID();
+	public void setID(long id);
+	public long getID();
 	public int getType();
 
 }

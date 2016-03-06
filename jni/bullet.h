@@ -18,6 +18,7 @@ subject to the following restrictions:
 #include <string.h>
 #include <jni.h>
 #include <android/log.h>
+#include <stdint.h>
 
 #define LOGV(...) __android_log_print(ANDROID_LOG_SILENT, LOG_TAG, __VA_ARGS__)
 //ANDROID_LOG_UNKNOWN, ANDROID_LOG_DEFAULT, ANDROID_LOG_VERBOSE, ANDROID_LOG_DEBUG, ANDROID_LOG_INFO, ANDROID_LOG_WARN, ANDROID_LOG_ERROR, ANDROID_LOG_FATAL, ANDROID_LOG_SILENT
@@ -44,14 +45,14 @@ extern "C" {
 #endif
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_createNonConfigPhysicsWorld(JNIEnv* env,
                                                         jobject thiz,
                                                         jobject physicsWorld );
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
                                                         jobject thiz,
@@ -59,18 +60,18 @@ Java_org_gearvrf_bullet_Bullet_changePhysicsWorldConfiguration(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_createGeometry(JNIEnv* env,
                                                         jobject thiz,
                                                         jobject geometry );
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
                                                     jobject thiz,
-                                                    jint physicsWorldId,
+                                                    jlong physicsWorldId,
                                                     jobject rigidBody_obj);
 
 
@@ -78,89 +79,89 @@ Java_org_gearvrf_bullet_Bullet_createAndAddRigidBody(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyForce(JNIEnv* env,
                                          jobject thiz,
-                                         jint physicsWorldId, 
-                                         jint rigidBodyId, 
+                                         jlong physicsWorldId,
+                                         jlong rigidBodyId,
                                          jobject force,
                                          jobject applyPoint);
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyTorque(JNIEnv* env,
                                           jobject thiz,
-                                          jint physicsWorldId, 
-                                          jint rigidBodyId, 
+                                          jlong physicsWorldId,
+                                          jlong rigidBodyId,
                                           jobject torque);
 
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyCentralImpulse(JNIEnv* env,
                                                   jobject thiz,
-                                                  jint physicsWorldId, 
-                                                  jint rigidBodyId, 
+                                                  jlong physicsWorldId,
+                                                  jlong rigidBodyId,
                                                   jobject impulse);
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyTorqueImpulse(JNIEnv* env,
                                                  jobject thiz,
-                                                 jint physicsWorldId, 
-                                                 jint rigidBodyId, 
+                                                 jlong physicsWorldId,
+                                                 jlong rigidBodyId,
                                                  jobject torque);
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_applyImpulse(JNIEnv* env,
                                            jobject thiz,
-                                           jint physicsWorldId, 
-                                           jint rigidBodyId, 
+                                           jlong physicsWorldId,
+                                           jlong rigidBodyId,
                                            jobject impulse, 
                                            jobject applyPoint);
 
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_clearForces(JNIEnv* env,
                                           jobject thiz,
-                                          jint physicsWorldId, 
-                                          jint rigidBodyId);
+                                          jlong physicsWorldId,
+                                          jlong rigidBodyId);
 
 
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_setActive(JNIEnv* env,
                                         jobject thiz,
-                                        jint physicsWorldId, 
-                                        jint rigidBodyId, 
+                                        jlong physicsWorldId,
+                                        jlong rigidBodyId,
                                         jboolean isActive);
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_setActivePhysicsWorldAll(JNIEnv* env,
                                         jobject thiz,
-                                        jint physicsWorldId, 
+                                        jlong physicsWorldId,
                                         jboolean isActive);
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_setActiveAll(JNIEnv* env,
                                           jobject thiz,
@@ -168,7 +169,7 @@ Java_org_gearvrf_bullet_Bullet_setActiveAll(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
                                             jobject thiz,
@@ -176,11 +177,11 @@ Java_org_gearvrf_bullet_Bullet_addConstraint(JNIEnv* env,
 
 
 JNIEXPORT
-jint
+jlong
 JNICALL
 Java_org_gearvrf_bullet_Bullet_doSimulationNative(JNIEnv* env,
                                                  jobject thiz,
-                                                 jint physicsWorldId,
+                                                 jlong physicsWorldId,
                                                  jfloat exec_time,
                                                  jint count);
 
@@ -191,7 +192,7 @@ jboolean
 JNICALL
 Java_org_gearvrf_bullet_Bullet_destroyPhysicsWorld(JNIEnv* env,
                                                   jobject thiz,
-                                                  jint physicsWorldId);
+                                                  jlong physicsWorldId);
 
 JNIEXPORT
 jboolean
@@ -264,6 +265,16 @@ void set_JavaObj_int(JNIEnv* env, jobject java_obj, const char* field_name, jint
 
 }
 
+void set_JavaObj_long(JNIEnv* env, jobject java_obj, const char* field_name, jlong val) {
+
+    LOGV("in set_JavaObj_long!");
+
+    jclass clazz = env->GetObjectClass(java_obj);
+    jfieldID fid = env->GetFieldID(clazz, field_name, "I");
+
+    env->SetLongField(java_obj, fid, val);
+}
+
 btVector3 get_vec_by_JavaVecObj(JNIEnv* env, jobject vector_obj) {
 
 	LOGV("in get_vec_by_JavaVecObj!");
@@ -312,6 +323,15 @@ int get_int_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_name) {
 
 }
 
+uint64_t get_long_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_name) {
+
+    LOGV("in get_long_by_JavaObj!");
+
+    jclass clazz = env->GetObjectClass(java_obj);
+    jfieldID long_fid = env->GetFieldID(clazz, field_name, "J");
+    return env->GetLongField(java_obj, long_fid);
+
+}
 
 float get_float_by_JavaObj(JNIEnv* env, jobject java_obj, const char* field_name) {
 	

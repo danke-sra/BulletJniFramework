@@ -21,7 +21,7 @@ import org.gearvrf.bullet.util.Vector3;
 public class StaticPlaneShape implements Shape {
 	
 	private static final int type = ShapeType.STATIC_PLANE_PROXYTYPE;
-	private int id;
+	private long id;
 	
 	public final Vector3 planeNormal;
 	public final float planeConstant;
@@ -37,12 +37,12 @@ public class StaticPlaneShape implements Shape {
 	}
 
 	@Override
-	public int getID() {
+	public long getID() {
 		return id;
 	}
 	
 	@Override
-	public void setID(int id) {
+	public void setID(long id) {
 		this.id = id;
 	}
 
